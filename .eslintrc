@@ -1,0 +1,49 @@
+{
+  // Override default eslint settings for the project
+  "extends": "airbnb/legacy",
+  "env": {
+    "node": true
+  },
+  // Note:
+  //  0 = ignore rule
+  //  1 = warn
+  //  2 = error
+  "rules": {
+    "array-bracket-spacing": [2, "never"],
+    "brace-style": [2, "1tbs"],
+    "comma-dangle": [0, "never"],
+    "consistent-return": 0,
+    "computed-property-spacing": [2, "never"],
+    "handle-callback-err": [2, "^.*err" ],
+    "max-len": 0,
+    "new-cap": 0,
+    "no-console": 2,
+    "no-else-return": 2,
+    "no-eq-null": 0,
+    "no-extra-semi": 2,
+    "no-loop-func": 0,
+    "no-shadow": 0,
+    "no-undef": 2,
+    "no-underscore-dangle": 0,
+    "no-use-before-define": [2, "nofunc"],
+    "object-curly-spacing": [2, "never"],
+    "quotes": 0,
+    "quote-props": 0,
+    "keyword-spacing": 2,
+    "space-before-blocks": 2,
+    "space-before-function-paren": [2, {"anonymous": "always", "named": "never"}],
+    "space-in-parens": 0,
+    "strict": 0,
+
+    // Override airbnb
+    "padded-blocks": 0,
+    "eqeqeq": [2, "smart"],
+    "func-names": 0, // Remove when upgrade to es6
+    "id-length": [2, {"exceptions": ["$", "e", "i", "j", "k", "q", "x", "y"]}],
+    "indent": [0, 2, {"SwitchCase": 1}],
+    "no-param-reassign": 0, // Remove when upgrade to es6
+    "radix": 0,
+    "spaced-comment": 0,
+    "vars-on-top": 0 // Remove when upgrade to es6
+  }
+}
