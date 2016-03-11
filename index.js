@@ -6,8 +6,12 @@ module.exports = {
     'array-func-names': require('./rules/array-func-names.js'),
     'catch-name': require('./rules/catch-name.js')
   },
-  rulesConfig: {
-    'array-func-names': 2,
-    'catch-name': 2
+  configs: {
+    recommended: {
+      rules: {
+        'mpirik/array-func-names': 2,
+        'mpirik/catch-name': 2
+      }
+    }
   }
 };
