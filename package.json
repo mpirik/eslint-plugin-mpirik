@@ -4,7 +4,8 @@
   "description": "This package extends Airbnb's eslint rules",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test": "npm run-script lint && node ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- -R spec ./tests/**/*.js"
   },
   "repository": {
     "type": "git",
@@ -24,7 +25,9 @@
   "devDependencies": {
     "eslint": "^2.3.0",
     "eslint-config-airbnb": "^6.1.0",
-    "eslint-plugin-react": "^4.2.1"
+    "eslint-plugin-react": "^4.2.1",
+    "istanbul": "^0.4.2",
+    "mocha": "^2.4.5"
   },
   "peerDependencies": {
     "eslint": ">=2.3.0"

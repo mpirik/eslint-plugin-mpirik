@@ -7,7 +7,7 @@ module.exports = function (context) {
   function isWithinArray() {
     var parent = context.getAncestors().pop();
 
-    return (parent.type === "ArrayExpression");
+    return parent.type === "ArrayExpression";
   }
 
   return {

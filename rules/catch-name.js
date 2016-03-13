@@ -2,7 +2,6 @@ module.exports = function (context) {
 
   var parameterName = context.options[0] || 'ex';
   var isPattern = parameterName[0] === '^';
-
   /**
    * Checks if the given name matches the configured parameter name.
    * @returns {boolean} True if the name is a match.
@@ -29,4 +28,6 @@ module.exports = function (context) {
   };
 };
 
-module.exports.schema = [];
+module.exports.schema = [{
+  type: "string"
+}];
