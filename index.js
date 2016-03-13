@@ -10,7 +10,9 @@ module.exports = {
     recommended: {
       rules: {
         'mpirik/array-func-names': 2,
-        'mpirik/catch-name': 2
+        'mpirik/catch-name': 2,
+        'mpirik/array-func-trycatch': 2,
+        'mpirik/asyncjs-func-trycatch': 2
       }
     }
   }
