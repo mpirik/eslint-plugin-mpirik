@@ -12,7 +12,7 @@ module.exports = function (context) {
 
   /**
    * Determines if the function has a defined body with the content wrapped in a try/catch block
-   * @param {object} node - Current node
+   * @param {object} node - Current ASTNode
    * @returns {boolean} True if the function body is wrapped in try/catch; Otherwise False
    */
   function hasBlockStatementWithTryCatchDefined(node) {
