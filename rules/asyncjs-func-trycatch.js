@@ -17,7 +17,6 @@ module.exports = function (context) {
 
     // If there is no callee details, abort
     if (!parent.callee || !parent.callee.object || !parent.callee.property) {
-      context.report(node, "No callee information available");
       return false;
     }
 
