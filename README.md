@@ -13,7 +13,7 @@ Enforces try/catch block inside function iteratees for asyncjs collection iterat
 
 Enforce try/catch block inside callback:
 ```javascript
-  "eslint-plugin-mpirik/asyncjs-func-trycatch": [2, {checkCallback: true}]
+  "mpirik/asyncjs-func-trycatch": [2, {checkCallback: true}]
 ```
 
 ### catch-name: `[2, 'ex']`
@@ -21,7 +21,7 @@ Enforce the name of the exception variable created in a catch block.
 
 Allow multiple parameter names:
 ```javascript
-  "eslint-plugin-mpirik/catch-name": [2, '^(ex|exception)']
+  "mpirik/catch-name": [2, '^(ex|exception)']
 ```
 
 
@@ -54,7 +54,7 @@ or
 
 ```javascript
   "rules": {
-    "eslint-plugin-mpirik/array-func-name": 2
+    "mpirik/array-func-name": 2
   }
 ```
 
