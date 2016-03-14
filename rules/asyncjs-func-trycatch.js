@@ -1,6 +1,7 @@
 module.exports = function (context) {
 
   var checkCallback = context.options[0] && context.options[0].checkCallback;
+  var asyncIterators = ['each', 'eachSeries', 'eachLimit', 'forEachOf', 'forEachOfSeries', 'forEachOfLimit', 'map', 'mapSeries', 'mapLimit', 'filter', 'filterSeries', 'filterLimit', 'reject', 'rejectSeries', 'rejectLimit', 'reduce', 'reduceRight', 'detect', 'detectSeries', 'detectLimit', 'sortBy', 'some', 'someLimit', 'someSeries', 'every', 'everyLimit', 'everySeries', 'concat', 'concatSeries'];
 
   /**
    * Determines if the function is defined as a parameter to an asyncjs iterator like async.each
@@ -20,8 +21,8 @@ module.exports = function (context) {
       return false;
     }
 
-    // If we're not in an async.each call, abort
-    if (parent.callee.object.name !== 'async') {
+    // If we're not in an iterator call, abort
+    if (parent.callee.object.name !== 'async' || asyncIterators.indexOf(parent.callee.property.name) === -1) {
       return false;
     }
 

@@ -7,6 +7,7 @@ ruleTester.run("asyncjs-func-trycatch", rule, {
     "async.each([], function(item, cb) { try {} catch (ex) {} }, function (err) {});",
     "async.eachSeries([], function(item, cb) { try {} catch (ex) {} }, function (err) {});",
     "async.eachLimit([], 10, function(item, cb) { try {} catch (ex) {} }, function (err) {});",
+    "async.waterfall([], function (err) {});",
     {
       code: "async.each([], function(item, cb) { try {} catch (ex) {} }, function (err) { try {} catch (ex) {} });",
       options: [{
