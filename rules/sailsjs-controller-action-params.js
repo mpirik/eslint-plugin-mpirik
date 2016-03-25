@@ -53,7 +53,13 @@ module.exports = function (context) {
    */
   function checkNode(node) {
     if (hasMoreThanTwoParameters(node) && isPropertyDefinition(node) && isModuleExportsProperty(node)) {
-      context.report(node, "Invalid parameters defined for sailsjs controller action.");
+      var params = node.params.slice(2).map(function (param) {
+        return param.name;
+      }).join(', ');
+
+      context.report(node, "Invalid parameters defined for sailsjs controller action: {{params}}", {
+        params: params
+      });
     }
   }
 

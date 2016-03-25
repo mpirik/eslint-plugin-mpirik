@@ -19,7 +19,7 @@ ruleTester.run("sailsjs-controller-action-params", rule, {
     {
       code: "module.exports = {lorem: function (req, res, next) { }};",
       errors: [{
-        message: "Invalid parameters defined for sailsjs controller action.",
+        message: "Invalid parameters defined for sailsjs controller action: next",
         type: "FunctionExpression"
       }]
     }, {
@@ -28,7 +28,7 @@ ruleTester.run("sailsjs-controller-action-params", rule, {
         ecmaVersion: 6
       },
       errors: [{
-        message: "Invalid parameters defined for sailsjs controller action.",
+        message: "Invalid parameters defined for sailsjs controller action: next",
         type: "ArrowFunctionExpression"
       }]
     }
