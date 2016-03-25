@@ -32,7 +32,7 @@ module.exports = function (context) {
     }
 
     // If the last two arguments of the CallExpression are functions, assume the last is the callback and second to last is the iteratee
-    var hasCallbackDefined = parent.arguments.length > 2 && parent.arguments[parent.arguments.length - 1].type === 'FunctionExpression'  && parent.arguments[parent.arguments.length - 2].type === 'FunctionExpression';
+    var hasCallbackDefined = parent.arguments.length > 2 && parent.arguments[parent.arguments.length - 1].type === 'FunctionExpression' && parent.arguments[parent.arguments.length - 2].type === 'FunctionExpression';
 
     // Return true if there is no callback defined or this is the iteratee function definition
     return !hasCallbackDefined || parent.arguments[parent.arguments.length - 1].start !== node.start;

@@ -24,6 +24,9 @@ Allow multiple parameter names:
   "mpirik/catch-name": [2, '^(ex|exception)']
 ```
 
+### sailsjs-controller-action-params: `2`
+Enforce parameter count for sailsjs controller actions. Currently, this rule will enforce two or less parameters for a controller action.
+
 
 ## Usage
 
