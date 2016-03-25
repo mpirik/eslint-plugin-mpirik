@@ -4,6 +4,7 @@ module.exports = {
     'array-func-trycatch': require('./rules/array-func-trycatch.js'),
     'asyncjs-func-trycatch': require('./rules/asyncjs-func-trycatch.js'),
     'catch-name': require('./rules/catch-name.js'),
+    'valid-jsdoc': require('./rules/valid-jsdoc.js'),
     'sailsjs-controller-action-params': require('./rules/sailsjs-controller-action-params.js')
   },
   configs: {
@@ -12,7 +13,15 @@ module.exports = {
         'mpirik/array-func-names': 2,
         'mpirik/array-func-trycatch': 2,
         'mpirik/asyncjs-func-trycatch': 2,
-        'mpirik/catch-name': 2
+        'mpirik/catch-name': 2,
+        'mpirik/valid-jsdoc': [2, {
+          "prefer": {
+            "return": "returns"
+          },
+          "requireParamDescription": false,
+          "requireReturn": false,
+          "requireReturnDescription": false,
+        }]
       }
     }
   }

@@ -24,6 +24,10 @@ Allow multiple parameter names:
   "mpirik/catch-name": [2, '^(ex|exception)']
 ```
 
+### valid-jsdoc
+Pretty much the same as eslint's valid-jsdoc, but performs as expected with `requireReturn`
+
+
 ### sailsjs-controller-action-params: `2`
 Enforce parameter count for sailsjs controller actions. Currently, this rule will enforce two or less parameters for a controller action.
 
