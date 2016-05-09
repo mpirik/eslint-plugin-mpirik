@@ -1,7 +1,9 @@
-var rule = require("../../rules/array-func-trycatch");
-var RuleTester = require("eslint/lib/testers/rule-tester");
+'use strict';
 
-var ruleTester = new RuleTester();
+const rule = require("../../rules/array-func-trycatch");
+const RuleTester = require("eslint/lib/testers/rule-tester");
+
+const ruleTester = new RuleTester();
 ruleTester.run("array-func-trycatch", rule, {
   valid: [
     "Foo.prototype.bar = [function bar(){ try {} catch (ex) {} }];",

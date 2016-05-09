@@ -1,7 +1,9 @@
-var rule = require("../../rules/array-func-names");
-var RuleTester = require("eslint/lib/testers/rule-tester");
+'use strict';
 
-var ruleTester = new RuleTester();
+const rule = require("../../rules/array-func-names");
+const RuleTester = require("eslint/lib/testers/rule-tester");
+
+const ruleTester = new RuleTester();
 ruleTester.run("array-func-names", rule, {
   valid: [
     "Foo.prototype.bar = [function bar(){}];",

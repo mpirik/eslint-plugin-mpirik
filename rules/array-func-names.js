@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function (context) {
 
   /**
@@ -5,15 +7,15 @@ module.exports = function (context) {
    * @returns {boolean} True if the node is a shorthand method in an array.
    */
   function isWithinArray() {
-    var parent = context.getAncestors().pop();
+    const parent = context.getAncestors().pop();
 
     return parent.type === "ArrayExpression";
   }
 
   return {
-    "FunctionExpression": function (node) {
+    FunctionExpression(node) {
 
-      var name = node.id && node.id.name;
+      const name = node.id && node.id.name;
 
       if (!name && isWithinArray()) {
         context.report(node, "Missing function expression name.");

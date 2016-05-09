@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function (context) {
 
   /**
@@ -5,7 +7,7 @@ module.exports = function (context) {
    * @returns {boolean} True if the node is a shorthand method in an array.
    */
   function isWithinArray() {
-    var parent = context.getAncestors().pop();
+    const parent = context.getAncestors().pop();
 
     return parent.type === "ArrayExpression";
   }
@@ -16,20 +18,20 @@ module.exports = function (context) {
    * @returns {boolean} True if the function body is wrapped in try/catch; Otherwise False
    */
   function hasBlockStatementWithTryCatchDefined(node) {
-    var blockStatement = node.body;
+    const blockStatement = node.body;
 
     // If there isn't a function body defined, assume things are kosher
     if (!blockStatement || blockStatement.type !== 'BlockStatement') {
       return true;
     }
 
-    var tryStatement = blockStatement.body[0];
+    const tryStatement = blockStatement.body[0];
 
     return tryStatement && tryStatement.type === 'TryStatement';
   }
 
   return {
-    "FunctionExpression": function (node) {
+    FunctionExpression(node) {
 
       if (isWithinArray() && !hasBlockStatementWithTryCatchDefined(node)) {
         context.report(node, "Missing try/catch block in function.");

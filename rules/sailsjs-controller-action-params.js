@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function (context) {
 
   /**
@@ -15,7 +17,7 @@ module.exports = function (context) {
    * @returns {boolean} True if the function is a property definition; Otherwise False
    */
   function isPropertyDefinition(node) {
-    var parent = node.parent;
+    const parent = node.parent;
 
     return parent && parent.type === 'Property';
   }
@@ -26,19 +28,19 @@ module.exports = function (context) {
    * @returns {boolean} True if the function is a property definition for module.exports; Otherwise False
    */
   function isModuleExportsProperty(node) {
-    var property = node.parent;
+    const property = node.parent;
 
     if (!property) {
       return false;
     }
 
-    var objectExpression = property.parent;
+    const objectExpression = property.parent;
 
     if (!objectExpression || objectExpression.type !== 'ObjectExpression') {
       return false;
     }
 
-    var assignmentExpression = objectExpression.parent;
+    const assignmentExpression = objectExpression.parent;
 
     if (!assignmentExpression || assignmentExpression.type !== 'AssignmentExpression') {
       return false;
@@ -53,12 +55,10 @@ module.exports = function (context) {
    */
   function checkNode(node) {
     if (hasMoreThanTwoParameters(node) && isPropertyDefinition(node) && isModuleExportsProperty(node)) {
-      var params = node.params.slice(2).map(function (param) {
-        return param.name;
-      }).join(', ');
+      const params = node.params.slice(2).map((param) => param.name).join(', ');
 
       context.report(node, "Invalid parameters defined for sailsjs controller action: {{params}}", {
-        params: params
+        params
       });
     }
   }

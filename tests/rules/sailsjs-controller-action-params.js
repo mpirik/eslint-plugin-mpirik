@@ -1,7 +1,9 @@
-var rule = require("../../rules/sailsjs-controller-action-params");
-var RuleTester = require("eslint/lib/testers/rule-tester");
+'use strict';
 
-var ruleTester = new RuleTester();
+const rule = require("../../rules/sailsjs-controller-action-params");
+const RuleTester = require("eslint/lib/testers/rule-tester");
+
+const ruleTester = new RuleTester();
 ruleTester.run("sailsjs-controller-action-params", rule, {
   valid: [
     "module.exports = {lorem: function (req, res) { }};",

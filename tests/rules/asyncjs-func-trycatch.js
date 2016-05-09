@@ -1,7 +1,9 @@
-var rule = require("../../rules/asyncjs-func-trycatch");
-var RuleTester = require("eslint/lib/testers/rule-tester");
+'use strict';
 
-var ruleTester = new RuleTester();
+const rule = require("../../rules/asyncjs-func-trycatch");
+const RuleTester = require("eslint/lib/testers/rule-tester");
+
+const ruleTester = new RuleTester();
 ruleTester.run("asyncjs-func-trycatch", rule, {
   valid: [
     "async.each([], function(item, cb) { try {} catch (ex) {} }, function (err) {});",

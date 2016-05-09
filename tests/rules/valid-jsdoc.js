@@ -1,7 +1,9 @@
-var rule = require("../../rules/valid-jsdoc");
-var RuleTester = require("eslint/lib/testers/rule-tester");
+'use strict';
 
-var ruleTester = new RuleTester();
+const rule = require("../../rules/valid-jsdoc");
+const RuleTester = require("eslint/lib/testers/rule-tester");
+
+const ruleTester = new RuleTester();
 ruleTester.run("valid-jsdoc", rule, {
 
   valid: [

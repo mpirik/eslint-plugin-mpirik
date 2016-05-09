@@ -1,6 +1,6 @@
 {
   // Override default eslint settings for the project
-  "extends": "airbnb/legacy",
+  "extends": "airbnb",
   "env": {
     "node": true
   },

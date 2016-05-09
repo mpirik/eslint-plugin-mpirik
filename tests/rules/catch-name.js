@@ -1,7 +1,9 @@
-var rule = require("../../rules/catch-name");
-var RuleTester = require("eslint/lib/testers/rule-tester");
+'use strict';
 
-var ruleTester = new RuleTester();
+const rule = require("../../rules/catch-name");
+const RuleTester = require("eslint/lib/testers/rule-tester");
+
+const ruleTester = new RuleTester();
 ruleTester.run("catch-name", rule, {
   valid: [
     "try {} catch (ex) {}",

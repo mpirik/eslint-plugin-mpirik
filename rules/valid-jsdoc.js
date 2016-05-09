@@ -1,21 +1,23 @@
-var doctrine = require("doctrine");
+'use strict';
+
+const doctrine = require("doctrine");
 
 module.exports = function (context) {
 
-  var options = context.options[0] || {};
-  var prefer = options.prefer || {};
-  var sourceCode = context.getSourceCode();
+  const options = context.options[0] || {};
+  const prefer = options.prefer || {};
+  const sourceCode = context.getSourceCode();
 
   // these default to true, so you have to explicitly make them false
-  var requireReturn = options.requireReturn !== false;
-  var requireReturnWhenReturnPresent = options.requireReturnWhenReturnPresent !== false;
-  var requireParamDescription = options.requireParamDescription !== false;
-  var requireReturnDescription = options.requireReturnDescription !== false;
-  var requireReturnType = options.requireReturnType !== false;
-  var preferType = options.preferType || {};
-  var checkPreferType = Object.keys(preferType).length !== 0;
+  const requireReturn = options.requireReturn !== false;
+  const requireReturnWhenReturnPresent = options.requireReturnWhenReturnPresent !== false;
+  const requireParamDescription = options.requireParamDescription !== false;
+  const requireReturnDescription = options.requireReturnDescription !== false;
+  const requireReturnType = options.requireReturnType !== false;
+  const preferType = options.preferType || {};
+  const checkPreferType = Object.keys(preferType).length !== 0;
 
-  var matchParamDescription;
+  let matchParamDescription;
   if (options.matchParamDescription) {
     matchParamDescription = new RegExp(options.matchParamDescription);
   }
@@ -25,7 +27,7 @@ module.exports = function (context) {
   //--------------------------------------------------------------------------
 
   // Using a stack to store if a function returns or not (handling nested functions)
-  var fns = [];
+  const fns = [];
 
   /**
    * Check if node type is a Class
@@ -57,7 +59,7 @@ module.exports = function (context) {
    * @private
    */
   function addReturn(node) {
-    var functionState = fns[fns.length - 1];
+    const functionState = fns[fns.length - 1];
 
     if (functionState && node.argument !== null) {
       functionState.returnPresent = true;
@@ -95,8 +97,7 @@ module.exports = function (context) {
    * @private
    */
   function getCurrentExpectedTypes(type) {
-    var currentType;
-    var expectedType;
+    let currentType;
 
     if (!type.name) {
       currentType = type.expression.name;
@@ -104,11 +105,11 @@ module.exports = function (context) {
       currentType = type.name;
     }
 
-    expectedType = preferType[currentType];
+    const expectedType = preferType[currentType];
 
     return {
-      currentType: currentType,
-      expectedType: expectedType
+      currentType,
+      expectedType
     };
   }
 
@@ -124,8 +125,8 @@ module.exports = function (context) {
       return;
     }
 
-    var typesToCheck = [];
-    var elements = [];
+    const typesToCheck = [];
+    let elements = [];
 
     if (tag.type.type === "TypeApplication") { // {Array.<String>}
       elements = tag.type.applications[0].type === "UnionType" ? tag.type.applications[0].elements : tag.type.applications;
@@ -138,14 +139,14 @@ module.exports = function (context) {
       typesToCheck.push(getCurrentExpectedTypes(tag.type));
     }
 
-    elements.forEach(function (type) {
+    elements.forEach((type) => {
       type = type.value ? type.value : type; // we have to use type.value for RecordType
       if (canTypeBeValidated(type.type)) {
         typesToCheck.push(getCurrentExpectedTypes(type));
       }
     });
 
-    typesToCheck.forEach(function (type) {
+    typesToCheck.forEach((type) => {
       if (type.expectedType &&
         type.expectedType !== type.currentType) {
         context.report({
@@ -167,14 +168,14 @@ module.exports = function (context) {
    * @private
    */
   function checkJSDoc(node) {
-    var jsdocNode = sourceCode.getJSDocComment(node);
-    var functionData = fns.pop();
-    var hasReturns = false;
-    var hasConstructor = false;
-    var isInterface = false;
-    var isOverride = false;
-    var params = Object.create(null);
-    var jsdoc;
+    const jsdocNode = sourceCode.getJSDocComment(node);
+    const functionData = fns.pop();
+    let hasReturns = false;
+    let hasConstructor = false;
+    let isInterface = false;
+    let isOverride = false;
+    const params = Object.create(null);
+    let jsdoc;
 
     // make sure only to validate JSDoc comments
     if (jsdocNode) {
@@ -196,7 +197,7 @@ module.exports = function (context) {
         return;
       }
 
-      jsdoc.tags.forEach(function (tag) {
+      jsdoc.tags.forEach((tag) => {
 
         switch (tag.title.toLowerCase()) {
 
@@ -236,7 +237,7 @@ module.exports = function (context) {
             hasReturns = true;
 
             if (!requireReturnWhenReturnPresent && !functionData.returnPresent && (tag.type === null || !isValidReturnType(tag))) {
-              context.report(jsdocNode, "Unexpected @" + tag.title + " tag; function has no return statement.");
+              context.report(jsdocNode, `Unexpected @${tag.title} tag; function has no return statement.`);
             } else {
               if (requireReturnType && !tag.type) {
                 context.report(jsdocNode, "Missing JSDoc return type.");
@@ -285,28 +286,28 @@ module.exports = function (context) {
           node.parent.kind !== "get" && node.parent.kind !== "constructor" &&
           node.parent.kind !== "set" && !isTypeClass(node)) {
           if (requireReturnWhenReturnPresent || functionData.returnPresent) {
-            context.report(jsdocNode, "Missing JSDoc @" + (prefer.returns || "returns") + " for function.");
+            context.report(jsdocNode, `Missing JSDoc @${(prefer.returns || "returns")} for function.`);
           }
         }
       }
 
       // check the parameters
-      var jsdocParams = Object.keys(params);
+      const jsdocParams = Object.keys(params);
 
       if (node.params) {
-        node.params.forEach(function (param, i) {
-          var name = param.name;
+        node.params.forEach((param, i) => {
+          const name = param.name;
 
           // TODO(nzakas): Figure out logical things to do with destructured, default, rest params
           if (param.type === "Identifier") {
             if (jsdocParams[i] && (name !== jsdocParams[i])) {
               context.report(jsdocNode, "Expected JSDoc for '{{name}}' but found '{{jsdocName}}'.", {
-                name: name,
+                name,
                 jsdocName: jsdocParams[i]
               });
             } else if (!params[name] && !isOverride) {
               context.report(jsdocNode, "Missing JSDoc for parameter '{{name}}'.", {
-                name: name
+                name
               });
             }
           }
@@ -314,7 +315,7 @@ module.exports = function (context) {
       }
 
       if (options.matchDescription) {
-        var regex = new RegExp(options.matchDescription);
+        const regex = new RegExp(options.matchDescription);
 
         if (!regex.test(jsdoc.description)) {
           context.report(jsdocNode, "JSDoc description does not satisfy the regex pattern.");
