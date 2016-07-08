@@ -1,27 +1,32 @@
 'use strict';
 
-module.exports = function (context) {
+module.exports = {
+  meta: {
+    docs: {},
+    schema: [],
+  },
 
-  /**
-   * Determines whether the current FunctionExpression node is a shorthand method in an array.
-   * @returns {boolean} True if the node is a shorthand method in an array.
-   */
-  function isWithinArray() {
-    const parent = context.getAncestors().pop();
+  create(context) {
 
-    return parent.type === "ArrayExpression";
-  }
+    /**
+     * Determines whether the current FunctionExpression node is a shorthand method in an array.
+     * @returns {boolean} True if the node is a shorthand method in an array.
+     */
+    function isWithinArray() {
+      const parent = context.getAncestors().pop();
 
-  return {
-    FunctionExpression(node) {
-
-      const name = node.id && node.id.name;
-
-      if (!name && isWithinArray()) {
-        context.report(node, "Missing function expression name.");
-      }
+      return parent.type === "ArrayExpression";
     }
-  };
-};
 
-module.exports.schema = [];
+    return {
+      FunctionExpression(node) {
+
+        const name = node.id && node.id.name;
+
+        if (!name && isWithinArray()) {
+          context.report(node, "Missing function expression name.");
+        }
+      },
+    };
+  },
+};

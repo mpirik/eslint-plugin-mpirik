@@ -1,11 +1,20 @@
+'use strict';
+
+const arrayFuncNames = require('./rules/array-func-names.js');
+const arrayFuncTrycatch = require('./rules/array-func-trycatch.js');
+const asyncjsFuncTrycatch = require('./rules/asyncjs-func-trycatch.js');
+const catchName = require('./rules/catch-name.js');
+const validJsdoc = require('./rules/valid-jsdoc.js');
+const sailsjsControllerActionParams = require('./rules/sailsjs-controller-action-params.js');
+
 module.exports = {
   rules: {
-    'array-func-names': require('./rules/array-func-names.js'),
-    'array-func-trycatch': require('./rules/array-func-trycatch.js'),
-    'asyncjs-func-trycatch': require('./rules/asyncjs-func-trycatch.js'),
-    'catch-name': require('./rules/catch-name.js'),
-    'valid-jsdoc': require('./rules/valid-jsdoc.js'),
-    'sailsjs-controller-action-params': require('./rules/sailsjs-controller-action-params.js')
+    'array-func-names': arrayFuncNames,
+    'array-func-trycatch': arrayFuncTrycatch,
+    'asyncjs-func-trycatch': asyncjsFuncTrycatch,
+    'catch-name': catchName,
+    'valid-jsdoc': validJsdoc,
+    'sailsjs-controller-action-params': sailsjsControllerActionParams,
   },
   configs: {
     recommended: {
@@ -15,14 +24,14 @@ module.exports = {
         'mpirik/asyncjs-func-trycatch': 2,
         'mpirik/catch-name': 2,
         'mpirik/valid-jsdoc': [2, {
-          "prefer": {
-            "return": "returns"
+          prefer: {
+            return: "returns",
           },
-          "requireParamDescription": false,
-          "requireReturn": false,
-          "requireReturnDescription": false,
-        }]
-      }
-    }
-  }
+          requireParamDescription: false,
+          requireReturn: false,
+          requireReturnDescription: false,
+        }],
+      },
+    },
+  },
 };

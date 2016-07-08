@@ -1,43 +1,48 @@
 'use strict';
 
-module.exports = function (context) {
+module.exports = {
+  meta: {
+    docs: {},
+    schema: [],
+  },
 
-  /**
-   * Determines whether the current FunctionExpression node is a shorthand method in an array.
-   * @returns {boolean} True if the node is a shorthand method in an array.
-   */
-  function isWithinArray() {
-    const parent = context.getAncestors().pop();
+  create(context) {
 
-    return parent.type === "ArrayExpression";
-  }
+    /**
+     * Determines whether the current FunctionExpression node is a shorthand method in an array.
+     * @returns {boolean} True if the node is a shorthand method in an array.
+     */
+    function isWithinArray() {
+      const parent = context.getAncestors().pop();
 
-  /**
-   * Determines if the function has a defined body with the content wrapped in a try/catch block
-   * @param {object} node - Current ASTNode
-   * @returns {boolean} True if the function body is wrapped in try/catch; Otherwise False
-   */
-  function hasBlockStatementWithTryCatchDefined(node) {
-    const blockStatement = node.body;
-
-    // If there isn't a function body defined, assume things are kosher
-    if (!blockStatement || blockStatement.type !== 'BlockStatement') {
-      return true;
+      return parent.type === "ArrayExpression";
     }
 
-    const tryStatement = blockStatement.body[0];
+    /**
+     * Determines if the function has a defined body with the content wrapped in a try/catch block
+     * @param {object} node - Current ASTNode
+     * @returns {boolean} True if the function body is wrapped in try/catch; Otherwise False
+     */
+    function hasBlockStatementWithTryCatchDefined(node) {
+      const blockStatement = node.body;
 
-    return tryStatement && tryStatement.type === 'TryStatement';
-  }
-
-  return {
-    FunctionExpression(node) {
-
-      if (isWithinArray() && !hasBlockStatementWithTryCatchDefined(node)) {
-        context.report(node, "Missing try/catch block in function.");
+      // If there isn't a function body defined, assume things are kosher
+      if (!blockStatement || blockStatement.type !== 'BlockStatement') {
+        return true;
       }
-    }
-  };
-};
 
-module.exports.schema = [];
+      const tryStatement = blockStatement.body[0];
+
+      return tryStatement && tryStatement.type === 'TryStatement';
+    }
+
+    return {
+      FunctionExpression(node) {
+
+        if (isWithinArray() && !hasBlockStatementWithTryCatchDefined(node)) {
+          context.report(node, "Missing try/catch block in function.");
+        }
+      },
+    };
+  },
+};

@@ -1,7 +1,9 @@
 'use strict';
 
 const rule = require("../../rules/sailsjs-controller-action-params");
+/* eslint-disable import/no-extraneous-dependencies */
 const RuleTester = require("eslint/lib/testers/rule-tester");
+/* eslint-enable import/no-extraneous-dependencies */
 
 const ruleTester = new RuleTester();
 ruleTester.run("sailsjs-controller-action-params", rule, {
@@ -13,26 +15,26 @@ ruleTester.run("sailsjs-controller-action-params", rule, {
     {
       code: "module.exports = {lorem: (req, res) => {} };",
       parserOptions: {
-        ecmaVersion: 6
-      }
-    }
+        ecmaVersion: 6,
+      },
+    },
   ],
   invalid: [
     {
       code: "module.exports = {lorem: function (req, res, next) { }};",
       errors: [{
         message: "Invalid parameters defined for sailsjs controller action: next",
-        type: "FunctionExpression"
-      }]
+        type: "FunctionExpression",
+      }],
     }, {
       code: "module.exports = {lorem: (req, res, next) => {} };",
       parserOptions: {
-        ecmaVersion: 6
+        ecmaVersion: 6,
       },
       errors: [{
         message: "Invalid parameters defined for sailsjs controller action: next",
-        type: "ArrowFunctionExpression"
-      }]
-    }
-  ]
+        type: "ArrowFunctionExpression",
+      }],
+    },
+  ],
 });

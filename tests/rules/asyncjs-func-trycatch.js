@@ -1,7 +1,9 @@
 'use strict';
 
 const rule = require("../../rules/asyncjs-func-trycatch");
+/* eslint-disable import/no-extraneous-dependencies */
 const RuleTester = require("eslint/lib/testers/rule-tester");
+/* eslint-enable import/no-extraneous-dependencies */
 
 const ruleTester = new RuleTester();
 ruleTester.run("asyncjs-func-trycatch", rule, {
@@ -13,8 +15,8 @@ ruleTester.run("asyncjs-func-trycatch", rule, {
     {
       code: "async.each([], function(item, cb) { try {} catch (ex) {} }, function (err) { try {} catch (ex) {} });",
       options: [{
-        checkCallback: true
-      }]
+        checkCallback: true,
+      }],
     },
     "somethingElse.each([], function(item, cb) {}, function (err) {});",
   ],
@@ -23,23 +25,23 @@ ruleTester.run("asyncjs-func-trycatch", rule, {
       code: "async.each([], function(item, cb) { cb(); }, function (err) {});",
       errors: [{
         message: "Missing try/catch block in function.",
-        type: "FunctionExpression"
-      }]
+        type: "FunctionExpression",
+      }],
     }, {
       code: "async.each([], function(item, cb) { cb(); try {} catch (ex) {} }, function (err) {});",
       errors: [{
         message: "Missing try/catch block in function.",
-        type: "FunctionExpression"
-      }]
+        type: "FunctionExpression",
+      }],
     }, {
       code: "async.each([], function(item, cb) { try {} catch (ex) {} }, function (err) {});",
       options: [{
-        checkCallback: true
+        checkCallback: true,
       }],
       errors: [{
         message: "Missing try/catch block in function.",
-        type: "FunctionExpression"
-      }]
-    }
-  ]
+        type: "FunctionExpression",
+      }],
+    },
+  ],
 });
