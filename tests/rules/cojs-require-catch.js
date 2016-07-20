@@ -23,6 +23,21 @@ ruleTester.run("cojs-require-catch", rule, {
       parserOptions: {
         ecmaVersion: 6,
       },
+    }, {
+      code: "co(function* foo() {}).then(success, error);",
+      parserOptions: {
+        ecmaVersion: 6,
+      },
+    }, {
+      code: "function bar() { return co(function* foo() {}).then(() => {}, () => {}); }",
+      parserOptions: {
+        ecmaVersion: 6,
+      },
+    }, {
+      code: "co(function* foo() {}).then(function() {}, function() {});",
+      parserOptions: {
+        ecmaVersion: 6,
+      },
     },
   ],
   invalid: [

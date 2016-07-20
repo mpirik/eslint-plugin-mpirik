@@ -55,7 +55,7 @@ module.exports = {
         return false;
       }
 
-      return memberExpression.property && memberExpression.property.type === 'Identifier' && memberExpression.property.name === 'catch';
+      return memberExpression.property && memberExpression.property.type === 'Identifier' && (memberExpression.property.name === 'catch' || memberExpression.property.name === 'then');
     }
 
     /**
