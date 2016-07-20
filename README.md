@@ -24,6 +24,12 @@ Allow multiple parameter names:
   "mpirik/catch-name": [2, '^(ex|exception)']
 ```
 
+### cojs-require-catch: `2`
+Enforces `.catch()` when calling a `co()` function
+
+### mochajs-no-exclusive-tests: `2`
+Prevents [exclusive mochajs tests](https://mochajs.org/#exclusive-tests)
+
 ### valid-jsdoc
 Pretty much the same as eslint's valid-jsdoc, but performs as expected with `requireReturn`
 
