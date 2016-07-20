@@ -5,7 +5,7 @@ const arrayFuncTrycatch = require('./rules/array-func-trycatch.js');
 const asyncjsFuncTrycatch = require('./rules/asyncjs-func-trycatch.js');
 const cojsRequireCatch = require('./rules/cojs-require-catch.js');
 const catchName = require('./rules/catch-name.js');
-const moachajsNoExclusiveTests = require('./rules/mochajs-no-exclusive-tests.js');
+const mochajsNoExclusiveTests = require('./rules/mochajs-no-exclusive-tests.js');
 const validJsdoc = require('./rules/valid-jsdoc.js');
 const sailsjsControllerActionParams = require('./rules/sailsjs-controller-action-params.js');
 
@@ -16,7 +16,7 @@ module.exports = {
     'asyncjs-func-trycatch': asyncjsFuncTrycatch,
     'catch-name': catchName,
     'cojs-require-catch': cojsRequireCatch,
-    'moachajs-no-exclusive-tests': moachajsNoExclusiveTests,
+    'mochajs-no-exclusive-tests': mochajsNoExclusiveTests,
     'valid-jsdoc': validJsdoc,
     'sailsjs-controller-action-params': sailsjsControllerActionParams,
   },
