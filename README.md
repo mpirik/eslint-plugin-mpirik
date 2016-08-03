@@ -27,6 +27,9 @@ Allow multiple parameter names:
 ### cojs-require-catch: `2`
 Enforces `.catch()` when calling a `co()` function
 
+### cojs-wrap-should-be-assignment: `2`
+Prevents `co.wrap(...)` from being used when it's not part of an assignment (Eg. `module.exports.foo = co.wrap();`).
+
 ### mochajs-no-exclusive-tests: `2`
 Prevents [exclusive mochajs tests](https://mochajs.org/#exclusive-tests)
 
