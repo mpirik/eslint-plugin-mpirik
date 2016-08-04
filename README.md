@@ -36,6 +36,9 @@ Prevents [exclusive mochajs tests](https://mochajs.org/#exclusive-tests)
 ### no-callback-in-generator: `2`
 Prevents callback usage inside of a generator function
 
+### promise-shorthand: `2`
+Require promise shorthand where possible
+
 ### valid-jsdoc
 Pretty much the same as eslint's valid-jsdoc, but performs as expected with `requireReturn`
 
