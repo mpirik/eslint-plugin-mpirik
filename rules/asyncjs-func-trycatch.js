@@ -2,8 +2,11 @@
 
 module.exports = {
   meta: {
-    docs: {},
-
+    docs: {
+      description: "Require try/catch block inside function iteratees for asyncjs collection iterators like `async.each`",
+      category: "Possible Errors",
+      recommended: false,
+    },
     schema: [{
       type: "object",
       properties: {

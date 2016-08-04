@@ -2,7 +2,11 @@
 
 module.exports = {
   meta: {
-    docs: {},
+    docs: {
+      description: "Enforce parameter count for sailsjs controller actions. Currently, this rule will enforce two or less parameters for a controller action.",
+      category: "Best Practices",
+      recommended: false,
+    },
     schema: [],
   },
 

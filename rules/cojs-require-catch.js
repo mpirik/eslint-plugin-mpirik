@@ -2,7 +2,11 @@
 
 module.exports = {
   meta: {
-    docs: {},
+    docs: {
+      description: "Enforces `.catch()` when calling a `co()` function",
+      category: "Possible Errors",
+      recommended: false,
+    },
     schema: [],
   },
 

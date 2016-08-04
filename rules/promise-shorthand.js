@@ -3,9 +3,9 @@
 module.exports = {
   meta: {
     docs: {
-      description: "require promise shorthand where possible",
+      description: "Require promise shorthand where possible",
       category: "ECMAScript 6",
-      recommended: true,
+      recommended: false,
     },
     fixable: "code",
     schema: [],

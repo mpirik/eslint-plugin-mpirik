@@ -2,7 +2,11 @@
 
 module.exports = {
   meta: {
-    docs: {},
+    docs: {
+      description: "Prevents callback usage inside of a generator function",
+      category: "ECMAScript 6",
+      recommended: false,
+    },
     schema: [],
   },
 

@@ -2,8 +2,11 @@
 
 module.exports = {
   meta: {
-    docs: {},
-
+    docs: {
+      description: "Enforce the name of the exception variable created in a catch block",
+      category: "Stylistic Issues",
+      recommended: false,
+    },
     schema: [{
       type: "string",
     }],

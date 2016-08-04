@@ -2,7 +2,11 @@
 
 module.exports = {
   meta: {
-    docs: {},
+    docs: {
+      description: "Prevents exclusive mochajs tests",
+      category: "Best Practices",
+      recommended: false,
+    },
     schema: [],
   },
 

@@ -2,7 +2,11 @@
 
 module.exports = {
   meta: {
-    docs: {},
+    docs: {
+      description: "Prevents `co.wrap(...)` from being used when it's not part of an assignment (Eg. `module.exports.foo = co.wrap();`)",
+      category: "Best Practices",
+      recommended: false,
+    },
     schema: [],
   },
 

@@ -2,7 +2,11 @@
 
 module.exports = {
   meta: {
-    docs: {},
+    docs: {
+      description: "Require function names for functions defined in an array",
+      category: "Stylistic Issues",
+      recommended: false,
+    },
     schema: [],
   },
 

@@ -2,7 +2,11 @@
 
 module.exports = {
   meta: {
-    docs: {},
+    docs: {
+      description: "Require try/catch block inside functions defined in an array",
+      category: "Possible Errors",
+      recommended: false,
+    },
     schema: [],
   },
 
