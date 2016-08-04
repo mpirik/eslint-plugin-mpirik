@@ -20,6 +20,11 @@ ruleTester.run("no-callback-in-generator", rule, {
         ecmaVersion: 6,
       },
     }, {
+      code: "function* foo() { bar.map((item) => { return bar.name; }); }",
+      parserOptions: {
+        ecmaVersion: 6,
+      },
+    }, {
       code: "function* foo() { yield bar.foobar(); }",
       parserOptions: {
         ecmaVersion: 6,
