@@ -33,6 +33,9 @@ Prevents `co.wrap(...)` from being used when it's not part of an assignment (Eg.
 ### mochajs-no-exclusive-tests: `2`
 Prevents [exclusive mochajs tests](https://mochajs.org/#exclusive-tests)
 
+### no-callback-in-generator: `2`
+Prevents callback usage inside of a generator function
+
 ### valid-jsdoc
 Pretty much the same as eslint's valid-jsdoc, but performs as expected with `requireReturn`
 
