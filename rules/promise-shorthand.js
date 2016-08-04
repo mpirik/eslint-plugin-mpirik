@@ -117,7 +117,7 @@ module.exports = {
             node,
             message: "Expected shorthand promise syntax.",
             fix: (fixer) => {
-              fixer.replaceText(newExpression, 'Promise.resolve()');
+              return fixer.replaceText(newExpression, 'Promise.resolve()');
             },
           });
         }
@@ -132,9 +132,9 @@ module.exports = {
 
             return context.report({
               node,
-              message: "Expected shorthand promise syntax.",
+              message: `Expected shorthand promise syntax.`,
               fix: (fixer) => {
-                fixer.replaceText(newExpression, `Promise.${executorBody.callee.name}(${args.join(', ')})`);
+                return fixer.replaceText(newExpression, `Promise.${executorBody.callee.name}(${args.join(', ')})`);
               },
             });
           }
@@ -147,9 +147,9 @@ module.exports = {
 
             return context.report({
               node,
-              message: "Expected shorthand promise syntax.",
+              message: `Expected shorthand promise syntax.`,
               fix: (fixer) => {
-                fixer.replaceText(newExpression, `Promise.${returnIdentifier.name}(${args.join(', ')})`);
+                return fixer.replaceText(newExpression, `Promise.${returnIdentifier.name}(${args.join(', ')})`);
               },
             });
           }
