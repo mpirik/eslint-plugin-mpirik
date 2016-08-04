@@ -7,10 +7,35 @@ module.exports = {
       category: "ECMAScript 6",
       recommended: false,
     },
-    schema: [],
+    schema: [{
+      type: 'string',
+    }],
   },
 
   create(context) {
+    // Only check callbacks with the first parameter matching the following
+    const errorArgument = context.options[0] || "err";
+
+    /**
+     * Determines if the first parameter is an error argument
+     * @param {Object[]} params - Parameter AST nodes
+     * @returns {boolean} True if is an error argument; otherwise False
+     */
+    function hasErrorParameter(params) {
+      if (!params || !params.length) {
+        return false;
+      }
+
+      const paramName = params[0].name;
+
+      if (errorArgument[0] === '^') {
+        const regexp = new RegExp(errorArgument);
+        return regexp.test(paramName);
+      }
+
+      return paramName === errorArgument;
+    }
+
     /**
      * Determines if the function is defined inside of a generator function
      * @param {Object} node - Current ASTNode
@@ -44,7 +69,8 @@ module.exports = {
      */
     function checkNode(node) {
 
-      if (isInGenerator(node)) {
+      const params = node.params;
+      if (hasErrorParameter(params) && isInGenerator(node)) {
         context.report(node, "Callback defined inside of a generator function.");
       }
     }
