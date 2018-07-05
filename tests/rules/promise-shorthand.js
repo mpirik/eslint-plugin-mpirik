@@ -1,8 +1,8 @@
 'use strict';
 
+const RuleTester = require("eslint/lib/testers/rule-tester");
 const rule = require("../../rules/promise-shorthand");
 /* eslint-disable import/no-extraneous-dependencies */
-const RuleTester = require("eslint/lib/testers/rule-tester");
 /* eslint-enable import/no-extraneous-dependencies */
 
 const ruleTester = new RuleTester();

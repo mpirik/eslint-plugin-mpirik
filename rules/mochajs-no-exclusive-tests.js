@@ -42,7 +42,6 @@ module.exports = {
      * @param {Object} node - Current ASTNode
      */
     function checkNode(node) {
-
       if (isMochaIdentifier(node) && definesExclusiveTest(node)) {
         context.report(node, "Test(s) marked as exclusive.");
       }

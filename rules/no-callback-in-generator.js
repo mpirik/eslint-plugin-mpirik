@@ -68,7 +68,6 @@ module.exports = {
      * @param {Object} node - Current ASTNode
      */
     function checkNode(node) {
-
       const params = node.params;
       if (hasErrorParameter(params) && isInGenerator(node)) {
         context.report(node, "Callback defined inside of a generator function.");

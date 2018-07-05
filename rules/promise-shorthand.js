@@ -106,9 +106,7 @@ module.exports = {
      * @param {Object} node - Current ASTNode
      */
     function checkNode(node) {
-
       if (isPromise(node)) {
-
         const newExpression = node.parent;
 
         // new Promise(); should be rewritten as Promise.resolve();
@@ -116,7 +114,7 @@ module.exports = {
           return context.report({
             node,
             message: "Expected shorthand promise syntax.",
-            fix: (fixer) => {
+            fix(fixer) {
               return fixer.replaceText(newExpression, 'Promise.resolve()');
             },
           });
@@ -127,13 +125,12 @@ module.exports = {
           const executorBody = newExpression.arguments[0].body;
           // new Promise((resolve) => resolve()) should be rewritten as Promise.resolve()
           if (hasCallExpressionArgument(executorBody)) {
-
             const args = getCallExpressionArguments(executorBody, sourceCode);
 
             return context.report({
               node,
               message: `Expected shorthand promise syntax.`,
-              fix: (fixer) => {
+              fix(fixer) {
                 return fixer.replaceText(newExpression, `Promise.${executorBody.callee.name}(${args.join(', ')})`);
               },
             });
@@ -141,14 +138,13 @@ module.exports = {
 
           // new Promise((resolve) => { return resolve(); }) should be rewritten as Promise.resolve()
           if (isSimpleBlockStatement(executorBody)) {
-
             const returnIdentifier = executorBody.body[0].argument.callee;
             const args = getCallExpressionArguments(executorBody.body[0].argument, sourceCode);
 
             return context.report({
               node,
               message: `Expected shorthand promise syntax.`,
-              fix: (fixer) => {
+              fix(fixer) {
                 return fixer.replaceText(newExpression, `Promise.${returnIdentifier.name}(${args.join(', ')})`);
               },
             });
